@@ -1,7 +1,34 @@
 import React from 'react'
 
 export default function Contact({ config }) {
-  const { contact } = config
+  const { contact, personal } = config
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const form = e.currentTarget
+
+    const name = form.name.value
+    const email = form.email.value
+    const message = form.message.value
+
+    const subject = encodeURIComponent(
+      `New Contact Form Message from ${name}`
+    )
+
+    const body = encodeURIComponent(
+      `Hello Akhil,
+
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}`
+    )
+
+    window.location.href =
+      `mailto:${personal.email}?subject=${subject}&body=${body}`
+  }
 
   return (
     <section id="contact" className="section-padding bg-gray-50">
@@ -23,39 +50,17 @@ export default function Contact({ config }) {
             </p>
 
             <ul className="mt-4 text-sm space-y-2">
-              <li>Email: {contact.email}</li>
-              <li>Location: {contact.location}</li>
+              <li>Email: {personal.email}</li>
+              <li>Location: {personal.location}</li>
             </ul>
           </div>
 
           {/* Contact Form */}
           <div className="animate-fade-in-up delay-100">
             <form
-              action="https://formsubmit.co/akhilkailas2001@gmail.com"
-              method="POST"
+              onSubmit={handleSubmit}
               className="space-y-4"
             >
-
-              {/* Subject of the email you receive */}
-              <input
-                type="hidden"
-                name="_subject"
-                value="New Contact Form Message"
-              />
-
-              {/* Reply directly to the person who submitted the form */}
-              <input
-                type="hidden"
-                name="_replyto"
-                value=""
-              />
-
-              {/* Email template */}
-              <input
-                type="hidden"
-                name="_template"
-                value="table"
-              />
 
               {/* Your Name */}
               <div>
