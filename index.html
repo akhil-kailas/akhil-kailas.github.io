@@ -1,25 +1,1949 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Akhil Kailas</title>
-    <meta name="description" content="Portfolio — Akhil. Web & Blockchain developer. Projects, experience, contact." />
 
-    <!-- Preload useful libs (optional) -->
-    <link rel="preload" href="/assets/hero-1200.webp" as="image">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111110">
+  <meta name="description" content="Akhil Kailas — Full Stack Web Developer specializing in Node.js, Angular, REST APIs, PostgreSQL, Redis, and blockchain applications.">
+  <meta name="author" content="Akhil Kailas">
+  <title>Akhil Kailas — Full Stack Web Developer</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <script type="module">
-      // Prevents FOUC: small style guard if needed; but Tailwind compiled CSS will handle most.
-    </script>
-  </head>
-  <body class="antialiased bg-white text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <style>
+    :root {
+      --bg: #111110;
+      --surface: #191918;
+      --surface-2: #20201e;
+      --text: #f3f2ed;
+      --muted: #96968f;
+      --line: #30302d;
+      --accent: #d9ff68;
+      --mono: "DM Mono", monospace;
+      --font: "Inter", sans-serif;
+      --container: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body, button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.7;
+      letter-spacing: .025em;
+      color: var(--muted);
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* NAVIGATION */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(17, 17, 16, .92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      color: #b5b5ae;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-contact {
+      padding: 10px 13px;
+      border: 1px solid #55554d;
+      font-family: var(--mono);
+      font-size: 10px;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    .nav-contact:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      color: var(--text);
+      border: 1px solid var(--line);
+      padding: 9px 11px;
+      font-family: var(--mono);
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding-top: 112px;
+      padding-bottom: 74px;
+    }
+
+    .hero-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .hero-label::before {
+      content: "";
+      width: 25px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      max-width: 1050px;
+      font-size: clamp(49px, 8.7vw, 106px);
+      letter-spacing: -.085em;
+      line-height: .99;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .hero h1 .outline {
+      color: transparent;
+      -webkit-text-stroke: 1px #92928b;
+    }
+
+    .hero h1 .green {
+      color: var(--accent);
+    }
+
+    .typing-line {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 23px;
+      color: #b5b5ae;
+      font-family: var(--mono);
+      font-size: clamp(12px, 1.6vw, 15px);
+      min-height: 26px;
+    }
+
+    .typing-text {
+      color: var(--accent);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 17px;
+      background: var(--accent);
+      vertical-align: -3px;
+      animation: blink .8s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      to { visibility: hidden; }
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 32px;
+      margin-top: 34px;
+    }
+
+    .hero-description {
+      max-width: 510px;
+      margin: 0;
+      color: #aaa9a2;
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .hero-actions,
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding: 13px 17px;
+      border: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 11px;
+      transition: background .2s, border-color .2s, color .2s, transform .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #171713;
+      border-color: var(--accent);
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background: #edffb0;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 25px;
+    }
+
+    .availability-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(217, 255, 104, .35);
+    }
+
+    /* MARQUEE */
+
+    .marquee {
+      overflow: hidden;
+      border-block: 1px solid var(--line);
+      padding: 16px 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 35s linear infinite;
+    }
+
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      padding-right: 27px;
+    }
+
+    .marquee span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: #b0b0a8;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .marquee b {
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    /* SHARED SECTIONS */
+
+    .section {
+      padding: 94px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 43px;
+    }
+
+    .section-number {
+      margin-bottom: 14px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(37px, 5.5vw, 66px);
+      line-height: 1.05;
+      font-weight: 500;
+      letter-spacing: -.07em;
+    }
+
+    .section-heading > p {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.95;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 65px;
+    }
+
+    .about-statement {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.43;
+      letter-spacing: -.055em;
+    }
+
+    .about-statement span {
+      color: var(--accent);
+    }
+
+    .about-note {
+      margin-top: 25px;
+      max-width: 480px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.95;
+    }
+
+    .about-details {
+      border-top: 1px solid var(--line);
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+    }
+
+    .detail-row span:first-child {
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .detail-row span:last-child {
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr 25px;
+      gap: 25px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding .2s;
+    }
+
+    .timeline-item:hover {
+      padding-left: 7px;
+    }
+
+    .timeline-date {
+      padding-top: 5px;
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 7px;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -.035em;
+    }
+
+    .institution {
+      color: var(--accent);
+      font-size: 11px;
+      line-height: 1.8;
+      margin-bottom: 13px;
+    }
+
+    .timeline-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .timeline-bullets li {
+      position: relative;
+      padding-left: 15px;
+      margin-bottom: 9px;
+      max-width: 670px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .timeline-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .timeline-item p {
+      max-width: 670px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.95;
+    }
+
+    .timeline-arrow {
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .skill-card {
+      min-height: 165px;
+      padding: 23px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      transition: background .25s;
+    }
+
+    .skill-card:hover {
+      background: var(--surface);
+    }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 21px;
+    }
+
+    .skill-index {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .skill-card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .skill-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    /* PROJECTS */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px 23px;
+    }
+
+    .project {
+      min-width: 0;
+    }
+
+    .project-visual {
+      aspect-ratio: 1.48;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      isolation: isolate;
+    }
+
+    .project-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .78;
+      transition: transform .6s cubic-bezier(.2, .7, .2, 1), opacity .3s;
+    }
+
+    .project:hover .project-visual img {
+      transform: scale(1.045);
+      opacity: 1;
+    }
+
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      inset: 35% 0 0;
+      background: linear-gradient(transparent, rgba(17,17,16,.55));
+      pointer-events: none;
+    }
+
+    .project-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 7px 9px;
+      background: rgba(17,17,16,.9);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .project-preview-label {
+      position: absolute;
+      bottom: 16px;
+      left: 17px;
+      z-index: 2;
+      color: #f3f2ed;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 8px #000;
+    }
+
+    .project-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 15px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-info h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: -.03em;
+    }
+
+    .project-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .project-stack span {
+      border: 1px solid var(--line);
+      padding: 5px 7px;
+      color: #b7b7af;
+      font-family: var(--mono);
+      font-size: 9px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      color: var(--accent);
+      font-size: 19px;
+      transition: .2s;
+    }
+
+    .project-link:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    .projects-note {
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* EDUCATION AND CERTIFICATES */
+
+    .certificate-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .certificate {
+      display: grid;
+      grid-template-columns: 55px 1fr 180px 20px;
+      align-items: center;
+      gap: 20px;
+      padding: 21px 0;
+      border-bottom: 1px solid var(--line);
+      transition: padding .2s;
+    }
+
+    .certificate:hover {
+      padding-inline: 7px;
+    }
+
+    .cert-number {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .certificate h3 {
+      margin: 0 0 5px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .certificate p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .cert-issuer {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    .cert-arrow {
+      color: var(--accent);
+    }
+
+    /* CONTACT */
+
+    .contact-section {
+      padding: 100px 0;
+    }
+
+    .contact-section h2 {
+      margin: 25px 0;
+      font-size: clamp(47px, 9.7vw, 108px);
+      font-weight: 500;
+      line-height: 1.02;
+      letter-spacing: -.085em;
+    }
+
+    .contact-section h2 span {
+      color: var(--accent);
+    }
+
+    .contact-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-top: 35px;
+    }
+
+    .contact-bottom p {
+      max-width: 450px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.95;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 23px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-inner .mono {
+      font-size: 9px;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* REVEAL ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 960px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links a {
+        font-size: 10px;
+      }
+
+      .nav-contact {
+        display: none;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr 260px;
+      }
+
+      .certificate {
+        grid-template-columns: 40px 1fr 145px 18px;
+        gap: 14px;
+      }
+
+      .hero-bottom {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: calc(100% - 36px);
+      }
+
+      .nav {
+        height: 64px;
+      }
+
+      .brand {
+        font-size: 14px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        padding: 10px 18px 20px;
+        background: #151514;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 12px;
+      }
+
+      .hero {
+        padding-top: 78px;
+        padding-bottom: 55px;
+      }
+
+      .hero-label {
+        font-size: 9px;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 11.8vw, 73px);
+      }
+
+      .hero-bottom,
+      .contact-bottom {
+        flex-direction: column;
+        align-items: start;
+        gap: 21px;
+      }
+
+      .hero-description {
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 30px;
+      }
+
+      .section-heading h2 {
+        font-size: 43px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .about-statement {
+        font-size: 28px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr 20px;
+        gap: 8px 12px;
+      }
+
+      .timeline-date {
+        grid-column: 1 / -1;
+      }
+
+      .timeline-content {
+        grid-column: 1;
+      }
+
+      .timeline-arrow {
+        grid-column: 2;
+        grid-row: 2;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-card {
+        min-height: 125px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 27px;
+      }
+
+      .project-visual {
+        aspect-ratio: 1.4;
+      }
+
+      .project-info h3 {
+        font-size: 16px;
+      }
+
+      .certificate {
+        grid-template-columns: 30px 1fr 18px;
+        gap: 11px;
+      }
+
+      .cert-issuer {
+        display: none;
+      }
+
+      .contact-section {
+        padding: 72px 0;
+      }
+
+      .contact-section h2 {
+        font-size: clamp(43px, 11vw, 67px);
+      }
+
+      .footer-inner {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .cursor {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Akhil Kailas home">
+      AKHIL<span>KAILAS</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certificates">Certificates</a>
+    </nav>
+
+    <a class="nav-contact" href="#contact">LET'S TALK ↗</a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="navLinks"
+      type="button">
+      MENU +
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="container hero" id="home">
+    <div class="hero-label mono">
+      A LITTLE ABOUT WHAT I DO
+    </div>
+
+    <h1>
+      Building things<br>
+      <span class="outline">for the web,</span><br>
+      <span class="green">with purpose.</span>
+    </h1>
+
+    <div class="typing-line" aria-label="Full Stack Developer, Backend Engineer, API Developer">
+      <span>I enjoy working as a</span>
+      <span class="typing-text" id="typingText" aria-hidden="true"></span>
+      <span class="cursor" aria-hidden="true"></span>
+    </div>
+
+    <div class="hero-bottom">
+      <p class="hero-description">
+        Hey, I'm <strong style="color:#f3f2ed">Akhil Kailas</strong>.
+        I'm a full stack web developer who enjoys solving backend problems,
+        building useful applications, and figuring out how to make software
+        work better — not just how to make it look good.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Take a look around ↘</a>
+        <a href="#contact" class="btn btn-secondary">Get in touch ↗</a>
+      </div>
+    </div>
+
+    <div class="availability mono">
+      <span class="availability-dot" aria-hidden="true"></span>
+      OPEN TO INTERESTING OPPORTUNITIES
+    </div>
+  </section>
+
+  <!-- TECH STACK MARQUEE -->
+  <div class="marquee" aria-label="Technologies I work with">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>Node.js</span><b>✳</b>
+        <span>LoopBack 4</span><b>✳</b>
+        <span>Angular</span><b>✳</b>
+        <span>PostgreSQL</span><b>✳</b>
+        <span>MongoDB</span><b>✳</b>
+        <span>Redis</span><b>✳</b>
+        <span>REST APIs</span><b>✳</b>
+        <span>Blockchain</span><b>✳</b>
+      </div>
+
+      <div class="marquee-group" aria-hidden="true">
+        <span>Node.js</span><b>✳</b>
+        <span>LoopBack 4</span><b>✳</b>
+        <span>Angular</span><b>✳</b>
+        <span>PostgreSQL</span><b>✳</b>
+        <span>MongoDB</span><b>✳</b>
+        <span>Redis</span><b>✳</b>
+        <span>REST APIs</span><b>✳</b>
+        <span>Blockchain</span><b>✳</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div>
+          <div class="mono section-number">01 / A BIT ABOUT ME</div>
+          <h2>Curious by nature.<br>Developer by choice.</h2>
+        </div>
+
+        <p>
+          I like understanding how things work under the hood and finding
+          practical ways to make applications more reliable, maintainable,
+          and easier to use.
+        </p>
+      </div>
+
+      <div class="about-grid reveal">
+        <div>
+          <p class="about-statement">
+            I enjoy turning ideas into
+            <span>working software</span> — from the database and API
+            behind an application to the interface people interact with.
+          </p>
+
+          <p class="about-note">
+            My work has introduced me to a mix of backend engineering,
+            frontend development, database design, and blockchain technology.
+            I'm always looking for something new to learn and a better way
+            to solve the next problem.
+          </p>
+        </div>
+
+        <div class="about-details">
+          <div class="detail-row">
+            <span>Name</span>
+            <span>Akhil Kailas</span>
+          </div>
+
+          <div class="detail-row">
+            <span>Location</span>
+            <span>Alappuzha, Kerala, India</span>
+          </div>
+
+          <div class="detail-row">
+            <span>Email</span>
+            <span>
+              <a href="mailto:akhilkailas2001@gmail.com">akhilkailas2001@gmail.com</a>
+            </span>
+          </div>
+
+          <div class="detail-row">
+            <span>Currently</span>
+            <span>Junior Software Engineer</span>
+          </div>
+
+          <div class="detail-row">
+            <span>Main focus</span>
+            <span>Full Stack & Backend Development</span>
+          </div>
+
+          <div class="detail-row">
+            <span>Availability</span>
+            <span class="accent">Open to opportunities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div>
+          <div class="mono section-number">02 / WHERE I'VE WORKED</div>
+          <h2>Learning by<br>building real things.</h2>
+        </div>
+
+        <p>
+          Working with real applications means thinking beyond the code:
+          how data moves, how systems behave, and how everything fits together.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-date">DEC 2024 — PRESENT</div>
+
+          <div class="timeline-content">
+            <h3>Junior Software Engineer</h3>
+
+            <div class="institution">
+              Xpeditions IT Solutions Pvt. Ltd. · Kerala, India
+            </div>
+
+            <ul class="timeline-bullets">
+              <li>
+                Develop and maintain web applications using Angular on the
+                frontend and Node.js with LoopBack 4 on the backend.
+              </li>
+              <li>
+                Work with PostgreSQL and MongoDB to design data structures,
+                improve queries, and keep data access efficient.
+              </li>
+              <li>
+                Use Redis caching to reduce repeated database queries and
+                improve API responsiveness where appropriate.
+              </li>
+              <li>
+                Build REST APIs with authentication, role-based authorization,
+                and a focus on readable, maintainable code.
+              </li>
+              <li>
+                Collaborate on application features, troubleshoot issues,
+                and work through problems across the stack.
+              </li>
+            </ul>
+          </div>
+
+          <div class="timeline-arrow" aria-hidden="true">↗</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div>
+          <div class="mono section-number">03 / MY TOOLKIT</div>
+          <h2>The tools I use<br>to get things done.</h2>
+        </div>
+
+        <p>
+          A practical mix of technologies I've worked with across backend
+          services, user interfaces, databases, and side projects.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <div class="skill-top">
+            <span class="mono">BACKEND</span>
+            <span class="skill-index">01</span>
+          </div>
+          <h3>Backend Development</h3>
+          <p>Node.js · LoopBack 4 · Express.js · RESTful APIs · Authentication</p>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-top">
+            <span class="mono">FRONTEND</span>
+            <span class="skill-index">02</span>
+          </div>
+          <h3>Frontend Development</h3>
+          <p>Angular · React.js · JavaScript ES6+ · HTML5 · CSS3 · Tailwind CSS</p>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-top">
+            <span class="mono">DATA</span>
+            <span class="skill-index">03</span>
+          </div>
+          <h3>Databases & Caching</h3>
+          <p>PostgreSQL · MongoDB · Redis · MySQL · Query Optimization</p>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-top">
+            <span class="mono">WEB3</span>
+            <span class="skill-index">04</span>
+          </div>
+          <h3>Blockchain Development</h3>
+          <p>Solidity · Hyperledger Fabric · Ethers.js · Smart Contracts</p>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-top">
+            <span class="mono">TOOLS</span>
+            <span class="skill-index">05</span>
+          </div>
+          <h3>Developer Workflow</h3>
+          <p>Git · GitHub · Docker · Postman · Linux</p>
+        </article>
+
+        <article class="skill-card reveal">
+          <div class="skill-top">
+            <span class="mono">EXPLORING</span>
+            <span class="skill-index">06</span>
+          </div>
+          <h3>Programming & AI</h3>
+          <p>Python · YOLOv5 · Data Structures & Algorithms · Web Security</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div>
+          <div class="mono section-number">04 / THINGS I'VE BUILT</div>
+          <h2>Ideas, experiments<br>& working projects.</h2>
+        </div>
+
+        <p>
+          A selection of projects spanning full-stack applications,
+          blockchain-based systems, and computer vision. Each one gave me
+          a chance to explore a different problem.
+        </p>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- Project 1 -->
+        <article class="project reveal">
+          <a href="https://github.com/akhil-kailas"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Explore Tripmate project on GitHub">
+            <div class="project-visual">
+              <img
+                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1100&q=85"
+                alt="Mountain landscape representing travel and ride sharing"
+                loading="lazy"
+                decoding="async">
+              <span class="project-tag">PROJECT / 001</span>
+              <span class="project-preview-label">Find a ride. Share the journey.</span>
+            </div>
+          </a>
+
+          <div class="project-info">
+            <div>
+              <h3>Tripmate — Ride Sharing</h3>
+              <p>
+                A ride-sharing application designed to connect drivers
+                and passengers. Users can publish rides, explore available
+                journeys, and book seats.
+              </p>
+              <div class="project-stack">
+                <span>MongoDB</span>
+                <span>Express</span>
+                <span>React</span>
+                <span>Node.js</span>
+              </div>
+            </div>
+            <a class="project-link"
+               href="https://github.com/akhil-kailas"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Tripmate repository">↗</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project reveal">
+          <a href="https://github.com/akhil-kailas"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Explore Certificate DApp on GitHub">
+            <div class="project-visual">
+              <img
+                src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1100&q=85"
+                alt="Digital blockchain network visualization"
+                loading="lazy"
+                decoding="async">
+              <span class="project-tag">PROJECT / 002</span>
+              <span class="project-preview-label">Credentials you can verify.</span>
+            </div>
+          </a>
+
+          <div class="project-info">
+            <div>
+              <h3>Certificate DApp</h3>
+              <p>
+                A decentralized certificate issuance and verification
+                application designed to make credentials easier to verify
+                and harder to tamper with.
+              </p>
+              <div class="project-stack">
+                <span>Solidity</span>
+                <span>Ethereum</span>
+                <span>React</span>
+                <span>Web3</span>
+              </div>
+            </div>
+            <a class="project-link"
+               href="https://github.com/akhil-kailas"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Certificate DApp repository">↗</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project reveal">
+          <a href="https://github.com/akhil-kailas"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Explore decentralized chat project on GitHub">
+            <div class="project-visual">
+              <img
+                src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=1100&q=85"
+                alt="Messaging application on a smartphone"
+                loading="lazy"
+                decoding="async">
+              <span class="project-tag">PROJECT / 003</span>
+              <span class="project-preview-label">Messaging meets decentralization.</span>
+            </div>
+          </a>
+
+          <div class="project-info">
+            <div>
+              <h3>Decentralized Discord Clone</h3>
+              <p>
+                An experiment in decentralized communication exploring
+                blockchain-based message storage and smart-contract
+                interactions.
+              </p>
+              <div class="project-stack">
+                <span>Blockchain</span>
+                <span>Smart Contracts</span>
+                <span>React</span>
+              </div>
+            </div>
+            <a class="project-link"
+               href="https://github.com/akhil-kailas"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Decentralized chat repository">↗</a>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project reveal">
+          <a href="https://github.com/akhil-kailas"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Explore Digital Passport Verification project on GitHub">
+            <div class="project-visual">
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1100&q=85"
+                alt="Documents and paperwork representing digital identity verification"
+                loading="lazy"
+                decoding="async">
+              <span class="project-tag">PROJECT / 004</span>
+              <span class="project-preview-label">Identity. Integrity. Verification.</span>
+            </div>
+          </a>
+
+          <div class="project-info">
+            <div>
+              <h3>Digital Passport Verification</h3>
+              <p>
+                A decentralized identity-verification concept exploring
+                how blockchain and smart contracts can support
+                verifiable digital records.
+              </p>
+              <div class="project-stack">
+                <span>Solidity</span>
+                <span>Ethers.js</span>
+                <span>React</span>
+              </div>
+            </div>
+            <a class="project-link"
+               href="https://github.com/akhil-kailas"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Digital passport repository">↗</a>
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="project reveal">
+          <a href="https://github.com/akhil-kailas"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Explore Floor Mat Detection project on GitHub">
+            <div class="project-visual">
+              <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1100&q=85"
+                alt="Electronic components representing a computer vision project"
+                loading="lazy"
+                decoding="async">
+              <span class="project-tag">PROJECT / 005</span>
+              <span class="project-preview-label">Teaching software to recognize objects.</span>
+            </div>
+          </a>
+
+          <div class="project-info">
+            <div>
+              <h3>Floor Mat Detection & Classification</h3>
+              <p>
+                A computer-vision application using YOLOv5 to identify
+                and classify floor mats from image input and video streams.
+              </p>
+              <div class="project-stack">
+                <span>Python</span>
+                <span>YOLOv5</span>
+                <span>Computer Vision</span>
+              </div>
+            </div>
+            <a class="project-link"
+               href="https://github.com/akhil-kailas"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Floor mat detection repository">↗</a>
+          </div>
+        </article>
+
+        <!-- Project 6 -->
+        <article class="project reveal">
+          <a href="https://github.com/akhil-kailas"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Explore Waste Management dApp on GitHub">
+            <div class="project-visual">
+              <img
+                src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=1100&q=85"
+                alt="Recycling materials representing waste lifecycle tracking"
+                loading="lazy"
+                decoding="async">
+              <span class="project-tag">PROJECT / 006</span>
+              <span class="project-preview-label">Making the waste lifecycle traceable.</span>
+            </div>
+          </a>
+
+          <div class="project-info">
+            <div>
+              <h3>Waste Management dApp</h3>
+              <p>
+                An enterprise blockchain application concept for tracking
+                waste through its lifecycle and improving traceability
+                between participants.
+              </p>
+              <div class="project-stack">
+                <span>Hyperledger Fabric</span>
+                <span>React</span>
+                <span>Node.js</span>
+              </div>
+            </div>
+            <a class="project-link"
+               href="https://github.com/akhil-kailas"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Waste management repository">↗</a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="projects-note">
+        Project preview images are illustrative. Replace them with actual
+        screenshots of your applications when available. The GitHub links
+        above currently point to your profile; update each one to its
+        specific repository when ready.
+      </p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div>
+          <div class="mono section-number">05 / EDUCATION</div>
+          <h2>Where the learning<br>started.</h2>
+        </div>
+
+        <p>
+          A foundation in computer science, with a growing interest in
+          blockchain systems and distributed applications.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-date">PRESENT</div>
+
+          <div class="timeline-content">
+            <h3>PG Diploma in Blockchain</h3>
+            <div class="institution">
+              Kerala Blockchain Academy · Kerala, India
+            </div>
+            <p>
+              Exploring blockchain fundamentals, distributed consensus,
+              smart contracts, Ethereum, and enterprise frameworks such
+              as Hyperledger Fabric.
+            </p>
+          </div>
+
+          <div class="timeline-arrow" aria-hidden="true">↗</div>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-date">2019 — 2023</div>
+
+          <div class="timeline-content">
+            <h3>Bachelor of Technology in Computer Science and Engineering</h3>
+            <div class="institution">
+              College of Engineering and Management Punnapra · Alappuzha, Kerala
+            </div>
+            <p>
+              Graduated with a CGPA of 6.62. Studied data structures,
+              database systems, computer networks, operating systems,
+              and object-oriented software engineering.
+            </p>
+          </div>
+
+          <div class="timeline-arrow" aria-hidden="true">↗</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section class="section" id="certificates">
+    <div class="container">
+      <div class="section-heading reveal">
+        <div>
+          <div class="mono section-number">06 / CERTIFICATIONS</div>
+          <h2>Always room<br>to learn more.</h2>
+        </div>
+
+        <p>
+          Courses and certifications covering blockchain, Python,
+          artificial intelligence, and information security.
+        </p>
+      </div>
+
+      <div class="certificate-list">
+        <div class="certificate reveal">
+          <span class="cert-number">01</span>
+          <div>
+            <h3>Certified Hyperledger Fabric Developer</h3>
+            <p>Enterprise blockchain architecture and chaincode development</p>
+          </div>
+          <span class="cert-issuer">Kerala Blockchain Academy</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">02</span>
+          <div>
+            <h3>Certified Blockchain Associate</h3>
+            <p>Blockchain fundamentals, consensus, and Web3 concepts</p>
+          </div>
+          <span class="cert-issuer">Kerala Blockchain Academy</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">03</span>
+          <div>
+            <h3>Developer Essential for Blockchain</h3>
+            <p>Smart contracts and decentralized application development</p>
+          </div>
+          <span class="cert-issuer">Kerala Blockchain Academy</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">04</span>
+          <div>
+            <h3>Ethereum Fundamentals</h3>
+            <p>EVM concepts, Solidity, and transaction lifecycle</p>
+          </div>
+          <span class="cert-issuer">Kerala Blockchain Academy</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">05</span>
+          <div>
+            <h3>Blockchain Foundation Program</h3>
+            <p>Hashing, distributed ledgers, and blockchain structures</p>
+          </div>
+          <span class="cert-issuer">Kerala Blockchain Academy</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">06</span>
+          <div>
+            <h3>Python for Everybody — Getting Started with Python</h3>
+            <p>Python fundamentals, data types, and control flow</p>
+          </div>
+          <span class="cert-issuer">Coursera</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">07</span>
+          <div>
+            <h3>Python Data Structures</h3>
+            <p>Collections, dictionaries, lists, tuples, and file processing</p>
+          </div>
+          <span class="cert-issuer">Coursera</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">08</span>
+          <div>
+            <h3>AI For Everyone</h3>
+            <p>Machine learning concepts and practical AI applications</p>
+          </div>
+          <span class="cert-issuer">Coursera</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="certificate reveal">
+          <span class="cert-number">09</span>
+          <div>
+            <h3>IT Security: Defence against the Digital Dark Arts</h3>
+            <p>Encryption, authentication, and network security</p>
+          </div>
+          <span class="cert-issuer">Coursera</span>
+          <span class="cert-arrow" aria-hidden="true">↗</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="mono">07 / GET IN TOUCH</div>
+
+      <h2 class="reveal">
+        Have something<br>
+        <span>in mind?</span>
+      </h2>
+
+      <div class="contact-bottom">
+        <p>
+          Whether it's a development opportunity, an interesting project,
+          or simply a conversation about technology, I'd be happy to hear
+          from you. Let's see what we can build together.
+        </p>
+
+        <div class="contact-links">
+          <a class="btn btn-primary"
+             href="mailto:akhilkailas2001@gmail.com">
+            Drop me an email ↗
+          </a>
+
+          <a class="btn btn-secondary"
+             href="https://linkedin.com/in/akhilkailas017"
+             target="_blank"
+             rel="noopener noreferrer">
+            LinkedIn ↗
+          </a>
+
+          <a class="btn btn-secondary"
+             href="https://github.com/akhil-kailas"
+             target="_blank"
+             rel="noopener noreferrer">
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <a class="brand" href="#home">
+      AKHIL<span>KAILAS</span>
+    </a>
+
+    <span class="mono">
+      © <span id="year"></span> AKHIL KAILAS · ALAPPUZHA, KERALA
+    </span>
+
+    <div class="footer-links mono">
+      <a href="#home">BACK TO TOP ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Respect the visitor's motion preferences.
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  // Mobile navigation.
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  function closeMenu() {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.textContent = "MENU +";
+  }
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "CLOSE −" : "MENU +";
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+
+  // Automatically update the copyright year.
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  // Natural typing animation.
+  const typingText = document.getElementById("typingText");
+
+  const phrases = [
+    "Full Stack Developer",
+    "Backend Engineer",
+    "API Developer",
+    "Problem Solver"
+  ];
+
+  let phraseIndex = 0;
+  let characterIndex = 0;
+  let deleting = false;
+
+  function typeNextCharacter() {
+    if (!typingText) return;
+
+    const currentPhrase = phrases[phraseIndex];
+
+    if (deleting) {
+      characterIndex--;
+    } else {
+      characterIndex++;
+    }
+
+    typingText.textContent = currentPhrase.slice(0, characterIndex);
+
+    let delay = deleting ? 42 : 78;
+
+    if (!deleting && characterIndex === currentPhrase.length) {
+      deleting = true;
+      delay = 1550;
+    } else if (deleting && characterIndex === 0) {
+      deleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      delay = 320;
+    }
+
+    window.setTimeout(typeNextCharacter, delay);
+  }
+
+  if (prefersReducedMotion) {
+    typingText.textContent = phrases[0];
+  } else {
+    typeNextCharacter();
+  }
+
+  // Scroll reveal animation.
+  const revealElements = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window && !prefersReducedMotion) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: "0px 0px -25px 0px"
+    });
+
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+  } else {
+    revealElements.forEach(element => {
+      element.classList.add("visible");
+    });
+  }
+
+  // Highlight the navigation link for the current section.
+  const sections = document.querySelectorAll("main section[id]");
+  const navItems = navLinks.querySelectorAll("a");
+
+  if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        navItems.forEach(link => {
+          const isActive =
+            link.getAttribute("href") === "#" + entry.target.id;
+
+          link.classList.toggle("active", isActive);
+
+          if (isActive) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      });
+    }, {
+      rootMargin: "-25% 0px -65% 0px"
+    });
+
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+  }
+
+  // Give project images a useful fallback if a remote image fails.
+  document.querySelectorAll(".project-visual img").forEach(img => {
+    img.addEventListener("error", () => {
+      img.style.display = "none";
+      img.parentElement.style.background =
+        "radial-gradient(ellipse at 70% 30%, #343a27, transparent 55%), #191918";
+    }, { once: true });
+  });
+</script>
+
+</body>
 </html>
